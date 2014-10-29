@@ -54,6 +54,7 @@ public class Server {
 			pipeline.addLast(new HttpServerCodec())
 					.addLast(new HttpObjectAggregator(64 * 1024))
 					.addLast(new ChunkedWriteHandler())
+					.addLast(new HttpRequestHandler(uri))
 					.addLast(new WebSocketServerProtocolHandler(uri));
 		}
 
