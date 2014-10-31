@@ -1,0 +1,15 @@
+option java_package = "com.yobennett.whoami";
+option java_outer_classname = "WhoAmI";
+
+package whoami;
+
+message WhoamiRequest {
+}
+
+message WhoamiResponse {
+  required string ip_addr = 1;
+}
+
+service WhoamiService {
+  rpc Whoami (WhoamiRequest) returns (WhoamiResponse);
+}

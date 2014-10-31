@@ -1,0 +1,17 @@
+option java_package = "com.yobennett.concat";
+option java_outer_classname = "Concat";
+
+package concat;
+
+message ConcatRequest {
+  required string a = 1;
+  required string b = 2;
+}
+
+message ConcatResponse {
+  required string c = 1;
+}
+
+service ConcatService {
+  rpc Concat (ConcatRequest) returns (ConcatResponse);
+}

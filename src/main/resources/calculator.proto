@@ -1,0 +1,19 @@
+option java_package = "com.yobennett.calculator";
+option java_outer_classname = "Calculator";
+
+message CalculatorRequest {
+    required int32 op1 = 1;
+    required int32 op2 = 2;
+}
+
+message CalculatorResponse {
+    required int32 result = 1;
+}
+
+service CalculatorService {
+    rpc Add(CalculatorRequest) returns (CalculatorResponse);
+    rpc Subtract(CalculatorRequest) returns (CalculatorResponse);
+    rpc Multiply(CalculatorRequest) returns (CalculatorResponse);
+    rpc Divide(CalculatorRequest) returns (CalculatorResponse);
+}
+

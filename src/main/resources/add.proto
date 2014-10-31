@@ -1,0 +1,17 @@
+option java_package = "com.yobennett.add";
+option java_outer_classname = "Add";
+
+package add;
+
+message AddRequest {
+	required int32 x=1;
+	required int32 y=2;
+}
+
+message AddResponse {
+	required int32 z=1;
+}
+
+service AddService {
+  rpc add (AddRequest) returns (AddResponse);
+}
