@@ -12,18 +12,34 @@ public class ServerAndClientTest {
 
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(ServerAndClientTest.class);
 
-	public class ExampleServer implements Runnable {
+	@Configuration
+	static class ContextConfiguration {
+
+		@Bean
+		public Server server() {
+			return new Server(8080, "/ws");
+		}
+	}
+
+	@Autowired
+	private Server server;
+
+	public class RunnableServer implements Runnable {
 
 		@Override
 		public void run() {
-			new Server(8080, "/ws").startAndWait();
+			server.startAndWait();
 		}
 
 	}
 
 	@Test
-	public void testClientConnectToServer() {
-		new Thread(new ExampleServer()).start();
+	public void testClientConnectToServer() throws InterruptedException {
+		try {
+			new Thread(new RunnableServer()).join();
+		} finally {
+			server.destroy();
+		}
 	}
 
 }
