@@ -32,11 +32,11 @@ public class Client {
 				.handler(new ClientChannelInitializer());
 	}
 
-	public void startAndWait() {
+	public void startAndWait() throws InterruptedException {
 		try {
 			this.channel = bootstrap.connect().sync().channel();
 			channel.closeFuture().sync();
-		} catch (InterruptedException exception) {
+		} finally {
 			destroy();
 		}
 	}

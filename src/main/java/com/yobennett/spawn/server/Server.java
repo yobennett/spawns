@@ -29,11 +29,11 @@ public class Server {
 				.childHandler(new ServerChannelInitializer());
 	}
 
-	public void startAndWait() {
+	public void startAndWait() throws InterruptedException {
 		try {
 			this.channel = bootstrap.bind(port).sync().channel();
 			channel.closeFuture().sync();
-		} catch (InterruptedException exception) {
+		} finally {
 			destroy();
 		}
 	}
